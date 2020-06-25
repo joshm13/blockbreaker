@@ -5,10 +5,27 @@ using UnityEngine;
 public class Block : MonoBehaviour
 {
     [SerializeField] AudioClip breakSound;
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    //cached reference
+    Level level;
+
+    private void Start()
     {
-        AudioSource.PlayClipAtPoint(breakSound, Camera.main.transform.position);
-        Destroy(gameObject);
+        level = FindObjectOfType<Level>();
+        level.countBreakableBlocks();
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        destroyBlock();
+    }
+
+    private void destroyBlock()
+    {
+        FindObjectOfType<GameStatus>().addToScore();
+        AudioSource.PlayClipAtPoint(breakSound, Camera.main.transform.position);
+        Destroy(gameObject);
+        level.blockDestroyed();
+        
+    }
 }
