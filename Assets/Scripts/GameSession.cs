@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GameStatus : MonoBehaviour
+public class GameSession : MonoBehaviour
 {
     // config params
     [Range(0.1f, 10f )] [SerializeField] float gameSpeed = 1f;
@@ -13,6 +13,19 @@ public class GameStatus : MonoBehaviour
     //state variables
     [SerializeField] int currentScore = 0;
 
+    private void Awake()
+    {
+        int gameStatusCount = FindObjectsOfType<GameSession>().Length;
+        if(gameStatusCount > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     private void Start()
     {
         scoreText.text = currentScore.ToString();
@@ -21,13 +34,18 @@ public class GameStatus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Time.timeScale = gameSpeed
+        Time.timeScale = gameSpeed;
     }
 
     public void addToScore()
     {
         currentScore += pointsPerBlock;
         scoreText.text = currentScore.ToString();
+    }
+    
+    public void resetGame()
+    {
+        Destroy(gameObject);
     }
 
 }

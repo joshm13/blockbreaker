@@ -22,7 +22,7 @@ public class Block : MonoBehaviour
 
     private void destroyBlock()
     {
-        FindObjectOfType<GameStatus>().addToScore();
+        FindObjectOfType<GameSession>().addToScore();
         AudioSource.PlayClipAtPoint(breakSound, Camera.main.transform.position);
         Destroy(gameObject);
         level.blockDestroyed();
