@@ -359,11 +359,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSpeed: 0.75
-  pointsPerBlock: 83
+  pointsPerBlock: 1
   scoreText: {fileID: 9129478228679474698}
   livesText: {fileID: 463920189}
   levelText: {fileID: 1361279717}
   lives: 3
+  gameOverSound: {fileID: 8300000, guid: b085399e5e897b84fb4e0a3de74d2dd3, type: 3}
+  nextLevelSound: {fileID: 8300000, guid: 14a844dfe5559564c8f33e8838585ecd, type: 3}
   currentScore: 0
 --- !u!1001 &9129478229895320620
 PrefabInstance:

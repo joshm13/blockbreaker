@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class LoseCollider : MonoBehaviour
 {
     bool lostLife = false;
+    [SerializeField] AudioClip loseLifeSound;
+    
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
@@ -18,6 +23,7 @@ public class LoseCollider : MonoBehaviour
         else
         {
             lostLife = true;
+            AudioSource.PlayClipAtPoint(loseLifeSound, Camera.main.transform.position);
             FindObjectOfType<Ball>().lockBallToPaddle();
             FindObjectOfType<Ball>().launchOnMouseClick();
 
